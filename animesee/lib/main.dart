@@ -1,4 +1,6 @@
 import 'package:animesee/view/HomeScreen.dart';
+import 'package:animesee/view/LoginScreen.dart';
+import 'package:animesee/view/RegisterScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,6 +17,8 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       routes: {
         "/": (context) => HomeScreen(),
+        "/login": (context) => LoginScreen(),
+        "/register": (context) => RegisterScreen(),
       },
     );
   }
