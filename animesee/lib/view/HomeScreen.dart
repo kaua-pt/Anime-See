@@ -1,3 +1,4 @@
+import 'package:animesee/components/BasicDrawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,26 +11,7 @@ class _HomeScreen extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: Column(children: [
-          ListTile(
-            title: Text("Register",
-                style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.white,
-                    fontFamily: "Nasalization-rg")),
-            onTap: (() => Navigator.pushNamed(context, "/register")),
-          ),
-          ListTile(
-            title: Text("Login",
-                style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.white,
-                    fontFamily: "Nasalization-rg")),
-            onTap: (() => Navigator.pushNamed(context, "/login")),
-          )
-        ]),
-      ),
+      drawer: BasicDrawer(),
       appBar: AppBar(
         title: Text("AnimeSee",
             style: TextStyle(
