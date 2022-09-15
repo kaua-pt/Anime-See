@@ -13,7 +13,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      color: Colors.amber,
       theme: ThemeData.light(),
       initialRoute: "/",
       routes: {

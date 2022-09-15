@@ -28,6 +28,7 @@ class OfflineDrawer extends StatelessWidget {
                   fontSize: 20,
                   color: Colors.black54,
                   fontFamily: "Nasalization-rg")),
+          onTap: (() => Navigator.pushNamed(context, "/login")),
         ),
         Divider(thickness: 1, color: Colors.black54),
         ListTile(
@@ -37,6 +38,7 @@ class OfflineDrawer extends StatelessWidget {
                   fontSize: 20,
                   color: Colors.black54,
                   fontFamily: "Nasalization-rg")),
+          onTap: () => Navigator.pushNamed(context, "/register"),
         ),
         Divider(thickness: 1, color: Colors.black54),
         ListTile(

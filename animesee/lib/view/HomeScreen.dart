@@ -1,6 +1,7 @@
+import 'package:animesee/components/Appbar.dart';
+import 'package:animesee/components/DrawerSel.dart';
 import 'package:animesee/components/LoggedDrawer.dart';
 import 'package:animesee/components/OfflineDrawer.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -9,21 +10,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreen extends State<HomeScreen> {
-  bool get isUserLogged => false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: isUserLogged ? LoggedDrawer() : OfflineDrawer(),
-      appBar: AppBar(
-        backgroundColor: Colors.black54,
-        title: Text("AnimeSee",
-            style: TextStyle(
-                fontSize: 24,
-                color: Colors.white,
-                fontFamily: "Nasalization-rg")),
-        centerTitle: true,
-      ),
+      drawer: DrawerSel(),
+      appBar: Appbar(),
+      body: Container(child: Text("Tela principal")),
     );
   }
 }
