@@ -13,7 +13,7 @@ class _Appbar extends State<Appbar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.black54,
+      backgroundColor: Color.fromRGBO(23, 22, 27, 1),
       title: Text("AnimeSee",
           style: TextStyle(
               fontSize: 24,
