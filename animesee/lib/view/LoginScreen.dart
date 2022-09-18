@@ -1,3 +1,4 @@
+import 'package:animesee/controllers/UserController.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,19 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreen extends State<LoginScreen> {
+  late final UserController controller;
+  late final TextEditingController email;
+  late final TextEditingController password;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = UserController(
+      email: email.text,
+      password: password.text,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,13 +48,15 @@ class _LoginScreen extends State<LoginScreen> {
                         TextInput(
                             text: "Email",
                             type: TextInputType.emailAddress,
-                            hint: "Write your email"),
+                            hint: "Write your email",
+                            textController: email),
                         SizedBox(height: 10),
                         TextInput(
                             text: "Password",
                             type: TextInputType.name,
                             hint: "Write your password",
-                            isObscured: true),
+                            isObscured: true,
+                            textController: password),
                         SizedBox(height: 10),
                         Padding(
                           padding: const EdgeInsets.only(top: 20),
@@ -51,7 +67,7 @@ class _LoginScreen extends State<LoginScreen> {
                                 shadowColor: Colors.brown,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(25))),
-                            onPressed: () => null,
+                            onPressed: () => validateLogin(),
                             child: Text(
                               "Login",
                               style: TextStyle(
@@ -65,5 +81,11 @@ class _LoginScreen extends State<LoginScreen> {
             ),
           ],
         )));
+  }
+
+  void validateLogin() {
+    if (controller.loginUser() == 200) {
+      Navigator.pushNamed(context, "/");
+    } else {}
   }
 }

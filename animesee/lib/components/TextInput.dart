@@ -6,20 +6,20 @@ class TextInput extends StatefulWidget {
   final TextInputType type;
   final bool isObscured;
   final String hint;
+  final TextEditingController textController;
 
   TextInput(
       {required this.text,
       required this.type,
       this.isObscured = false,
-      required this.hint});
+      required this.hint,
+      required this.textController});
 
   @override
   State<StatefulWidget> createState() => _TextInput();
 }
 
 class _TextInput extends State<TextInput> {
-  final TextEditingController _textController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -31,7 +31,7 @@ class _TextInput extends State<TextInput> {
               color: Colors.black87,
               fontSize: 16,
               fontFamily: "Nasalization-rg")),
-      controller: _textController,
+      controller: widget.textController,
     );
   }
 }
