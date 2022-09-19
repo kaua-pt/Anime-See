@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:animesee/components/Appbar.dart';
 import 'package:animesee/components/TextInput.dart';
+import 'package:animesee/controllers/UserController.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,13 +15,26 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreen extends State<RegisterScreen> {
-  final formKey = GlobalKey<FormState>();
+  late final UserController controller;
+  late final TextEditingController name = TextEditingController();
   late final TextEditingController email = TextEditingController();
   late final TextEditingController password = TextEditingController();
   late final TextEditingController cPassword = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    controller = UserController(
+        name: name.text,
+        email: email.text,
+        password: password.text,
+        cPassword: cPassword.text);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final bool meajuda = false;
+
     return Scaffold(
         drawer: DrawerSel(),
         appBar: Appbar(),
@@ -36,10 +50,15 @@ class _RegisterScreen extends State<RegisterScreen> {
               child: Padding(
                   padding: EdgeInsets.all(30),
                   child: Form(
-                    key: formKey,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
+                        TextInput(
+                            text: "Name",
+                            type: TextInputType.name,
+                            hint: "Write your name",
+                            textController: name),
+                        SizedBox(height: 10),
                         TextInput(
                             text: "Email",
                             type: TextInputType.emailAddress,
@@ -50,14 +69,12 @@ class _RegisterScreen extends State<RegisterScreen> {
                             text: "Password",
                             type: TextInputType.text,
                             hint: "Write your password",
-                            isObscured: true,
                             textController: password),
                         SizedBox(height: 10),
                         TextInput(
                             text: "Confirm your password",
                             type: TextInputType.text,
                             hint: "Write your password again",
-                            isObscured: true,
                             textController: cPassword),
                         SizedBox(height: 10),
                         Padding(
@@ -69,7 +86,7 @@ class _RegisterScreen extends State<RegisterScreen> {
                                 shadowColor: Colors.brown,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(25))),
-                            onPressed: () => Navigator.pushNamed(context, "/"),
+                            onPressed: () => validateRegister(),
                             child: Text(
                               "Register",
                               style: TextStyle(
@@ -83,5 +100,11 @@ class _RegisterScreen extends State<RegisterScreen> {
             ),
           ],
         )));
+  }
+
+  void validateRegister() async {
+    if (controller.registerUser() == 200) {
+      Navigator.pushNamed(context, "/");
+    } else {}
   }
 }

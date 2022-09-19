@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:animesee/controllers/UserController.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../components/Appbar.dart';
@@ -10,9 +14,18 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreen extends State<LoginScreen> {
-  final formKey = GlobalKey<FormState>();
+  late final UserController controller;
   late final TextEditingController email;
   late final TextEditingController password;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = UserController(
+      email: email.text,
+      password: password.text,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +44,6 @@ class _LoginScreen extends State<LoginScreen> {
               child: Padding(
                   padding: EdgeInsets.all(30),
                   child: Form(
-                    key: formKey,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -57,7 +69,7 @@ class _LoginScreen extends State<LoginScreen> {
                                 shadowColor: Colors.brown,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(25))),
-                            onPressed: () => Navigator.pushNamed(context, "/"),
+                            onPressed: () => validateLogin(),
                             child: Text(
                               "Login",
                               style: TextStyle(
@@ -71,5 +83,12 @@ class _LoginScreen extends State<LoginScreen> {
             ),
           ],
         )));
+  }
+
+  void validateLogin() async {
+    if (controller.loginUser() == 200) {
+      controller.loginUser();
+      Navigator.pushNamed(context, "/");
+    } else {}
   }
 }
