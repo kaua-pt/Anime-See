@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "486085212925",
+    "project_id": "animesee-ba7e8",
+    "storage_bucket": "animesee-ba7e8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:486085212925:android:15d7082aa57e728a531c94",
+        "android_client_info": {
+          "package_name": "com.company.Animesee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "486085212925-5qhonmllb2bn3pn2obg2cb8f3kj49hsf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKDZF4Wz4R04cDvB5P7fS3nJCmf0iSdjg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "486085212925-5qhonmllb2bn3pn2obg2cb8f3kj49hsf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

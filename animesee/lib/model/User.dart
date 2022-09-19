@@ -1,6 +1,3 @@
-import 'package:animesee/controllers/MongoDatabase.dart';
-import 'package:mongo_dart/mongo_dart.dart';
-
 class User {
   final String email;
   final String name;

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>299582198723-vb0tec7g8car68d9qn7e3ttbfur08boj.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.299582198723-vb0tec7g8car68d9qn7e3ttbfur08boj</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBjMvw-P3TKPFQlDcQU07xD2uwPbPWIssk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>299582198723</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.animesee</string>
+	<key>PROJECT_ID</key>
+	<string>animesee-31389</string>
+	<key>STORAGE_BUCKET</key>
+	<string>animesee-31389.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:299582198723:ios:93ab0963115673435a2376</string>
+</dict>
+</plist>
