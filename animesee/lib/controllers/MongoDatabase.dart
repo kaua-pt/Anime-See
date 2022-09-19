@@ -1,18 +1,15 @@
-import 'dart:html';
-
 import 'package:mongo_dart/mongo_dart.dart';
 
 import '../model/User.dart';
 
 class MongoDatabase {
   static var db, collection;
-  static const String url =
-      "mongodb+srv://kaua:paradeverminhasenha@cluster0.wtstkeb.mongodb.net/?retryWrites=true&w=majority";
+  static const String url = "mongodb://10.0.2.2:27017";
 
-  static connect(String collection) async {
+  static connect(String collectionToConnect) async {
     db = await Db.create(url);
     await db.open();
-    collection = db.collection(collection);
+    collection = db.collection(collectionToConnect);
   }
 
   static insert(user) async {
@@ -26,11 +23,7 @@ class MongoDatabase {
 
   static Future<User> getOneElement(String comparative, String name) async {
     User user;
-    try {
-      user = await collection.findOne(where.eq(comparative, name));
-    } catch (e) {
-      throw e;
-    }
+    user = await collection.findOne(where.eq(comparative, name));
     return user;
   }
 

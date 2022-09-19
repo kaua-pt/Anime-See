@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:animesee/controllers/UserController.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -83,8 +85,9 @@ class _LoginScreen extends State<LoginScreen> {
         )));
   }
 
-  void validateLogin() {
+  void validateLogin() async {
     if (controller.loginUser() == 200) {
+      controller.loginUser();
       Navigator.pushNamed(context, "/");
     } else {}
   }

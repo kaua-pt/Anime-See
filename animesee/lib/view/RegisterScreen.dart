@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:animesee/components/Appbar.dart';
@@ -15,10 +16,10 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreen extends State<RegisterScreen> {
   late final UserController controller;
-  late final TextEditingController name;
-  late final TextEditingController email;
-  late final TextEditingController password;
-  late final TextEditingController cPassword;
+  late final TextEditingController name = TextEditingController();
+  late final TextEditingController email = TextEditingController();
+  late final TextEditingController password = TextEditingController();
+  late final TextEditingController cPassword = TextEditingController();
 
   @override
   void initState() {
@@ -101,7 +102,7 @@ class _RegisterScreen extends State<RegisterScreen> {
         )));
   }
 
-  void validateRegister() {
+  void validateRegister() async {
     if (controller.registerUser() == 200) {
       Navigator.pushNamed(context, "/");
     } else {}
