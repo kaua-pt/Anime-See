@@ -3,7 +3,6 @@ import 'dart:ui';
 
 import 'package:animesee/components/Appbar.dart';
 import 'package:animesee/components/TextInput.dart';
-import 'package:animesee/controllers/UserController.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,21 +14,10 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreen extends State<RegisterScreen> {
-  late final UserController controller;
   late final TextEditingController name = TextEditingController();
   late final TextEditingController email = TextEditingController();
   late final TextEditingController password = TextEditingController();
   late final TextEditingController cPassword = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    controller = UserController(
-        name: name.text,
-        email: email.text,
-        password: password.text,
-        cPassword: cPassword.text);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +74,7 @@ class _RegisterScreen extends State<RegisterScreen> {
                                 shadowColor: Colors.brown,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(25))),
-                            onPressed: () => validateRegister(),
+                            onPressed: () => null,
                             child: Text(
                               "Register",
                               style: TextStyle(
@@ -100,11 +88,5 @@ class _RegisterScreen extends State<RegisterScreen> {
             ),
           ],
         )));
-  }
-
-  void validateRegister() async {
-    if (controller.registerUser() == 200) {
-      Navigator.pushNamed(context, "/");
-    } else {}
   }
 }

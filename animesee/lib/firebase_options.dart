@@ -67,7 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '299582198723',
     projectId: 'animesee-31389',
     storageBucket: 'animesee-31389.appspot.com',
-    iosClientId: '299582198723-vb0tec7g8car68d9qn7e3ttbfur08boj.apps.googleusercontent.com',
+    iosClientId:
+        '299582198723-vb0tec7g8car68d9qn7e3ttbfur08boj.apps.googleusercontent.com',
     iosBundleId: 'com.example.animesee',
   );
 
@@ -77,7 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '299582198723',
     projectId: 'animesee-31389',
     storageBucket: 'animesee-31389.appspot.com',
-    iosClientId: '299582198723-vb0tec7g8car68d9qn7e3ttbfur08boj.apps.googleusercontent.com',
+    iosClientId:
+        '299582198723-vb0tec7g8car68d9qn7e3ttbfur08boj.apps.googleusercontent.com',
     iosBundleId: 'com.example.animesee',
   );
 }
