@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -11,6 +9,7 @@ class AuthService extends ChangeNotifier {
   AuthService() {
     _authCheck();
   }
+
   _authCheck() {
     _auth.authStateChanges().listen((User? userL) {
       user = (userL == null) ? null : userL;
@@ -24,9 +23,10 @@ class AuthService extends ChangeNotifier {
     notifyListeners();
   }
 
-  void register(String email, String password, String passwordC) async {
+  register(String email, String password, String passwordC) async {
     try {
       if (password == passwordC) {
+        print("na funcao");
         await _auth.createUserWithEmailAndPassword(
             email: email, password: password);
       }
@@ -40,7 +40,7 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-  void login(String email, String password) async {
+  login(String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
       _getUser();
@@ -53,7 +53,7 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-  void logout() async {
+  logout() async {
     await _auth.signOut();
     _getUser();
   }

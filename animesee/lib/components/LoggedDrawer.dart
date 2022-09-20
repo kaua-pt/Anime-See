@@ -1,10 +1,13 @@
-import 'dart:convert';
-
-import 'package:animesee/view/HomeScreen.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:animesee/services/AuthService.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class LoggedDrawer extends StatelessWidget {
+class LoggedDrawer extends StatefulWidget {
+  @override
+  State<LoggedDrawer> createState() => _LoggedDrawerState();
+}
+
+class _LoggedDrawerState extends State<LoggedDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -76,8 +79,14 @@ class LoggedDrawer extends StatelessWidget {
                   fontSize: 20,
                   color: Colors.black54,
                   fontFamily: "Nasalization-rg")),
+          onTap: () => logout(),
         )
       ],
     ));
+  }
+
+  logout() async {
+    await context.read<AuthService>().logout();
+    Navigator.pushNamed(context, "/");
   }
 }

@@ -1,10 +1,8 @@
-import 'dart:io';
-import 'dart:ui';
-
 import 'package:animesee/components/Appbar.dart';
 import 'package:animesee/components/TextInput.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:animesee/services/AuthService.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../components/DrawerSel.dart';
 
@@ -21,15 +19,13 @@ class _RegisterScreen extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final bool meajuda = false;
-
     return Scaffold(
         drawer: DrawerSel(),
         appBar: Appbar(),
         backgroundColor: Colors.grey,
         body: Container(
             child: ListView(
-          padding: EdgeInsets.only(top: 110, left: 40, right: 40),
+          padding: EdgeInsets.only(top: 130, left: 40, right: 40),
           children: [
             Container(
               decoration: BoxDecoration(
@@ -42,12 +38,6 @@ class _RegisterScreen extends State<RegisterScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         TextInput(
-                            text: "Name",
-                            type: TextInputType.name,
-                            hint: "Write your name",
-                            textController: name),
-                        SizedBox(height: 10),
-                        TextInput(
                             text: "Email",
                             type: TextInputType.emailAddress,
                             hint: "Write you email",
@@ -57,11 +47,13 @@ class _RegisterScreen extends State<RegisterScreen> {
                             text: "Password",
                             type: TextInputType.text,
                             hint: "Write your password",
+                            isObscured: true,
                             textController: password),
                         SizedBox(height: 10),
                         TextInput(
                             text: "Confirm your password",
                             type: TextInputType.text,
+                            isObscured: true,
                             hint: "Write your password again",
                             textController: cPassword),
                         SizedBox(height: 10),
@@ -70,11 +62,10 @@ class _RegisterScreen extends State<RegisterScreen> {
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 fixedSize: Size(500, 50),
-                                primary: Colors.black87,
                                 shadowColor: Colors.brown,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(25))),
-                            onPressed: () => null,
+                            onPressed: () => register(),
                             child: Text(
                               "Register",
                               style: TextStyle(
@@ -88,5 +79,19 @@ class _RegisterScreen extends State<RegisterScreen> {
             ),
           ],
         )));
+  }
+
+  register() async {
+    try {
+      await context
+          .read<AuthService>()
+          .register(email.text, password.text, cPassword.text);
+      Navigator.pushNamed(context, "/");
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Email successfully registered")));
+    } on AuthException catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.message)));
+    }
   }
 }
