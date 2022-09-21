@@ -1,7 +1,9 @@
 import 'package:animesee/components/Appbar.dart';
 import 'package:animesee/components/DrawerSel.dart';
-import 'package:animesee/components/LoggedDrawer.dart';
-import 'package:animesee/components/OfflineDrawer.dart';
+import 'package:animesee/components/ScrollRow.dart';
+import 'package:animesee/model/Anime.dart';
+import 'package:animesee/model/Popular.dart';
+import 'package:animesee/repositories/AnimeRepositories.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -10,12 +12,20 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreen extends State<HomeScreen> {
+  AnimeRepositories api = AnimeRepositories();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: DrawerSel(),
       appBar: Appbar(),
-      body: Container(child: Text("Tela principal")),
+      body: Container(
+          child: Padding(
+        padding: const EdgeInsets.only(top: 30, left: 30),
+        child: Center(
+          child: ScroolRow(list: List.empty(), title: "Popular Anime"),
+        ),
+      )),
     );
   }
 }

@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:animesee/model/Anime.dart';
 import 'package:animesee/model/AnimeDetail.dart';
 import 'package:animesee/model/Popular.dart';
 import 'package:dio/dio.dart';
@@ -8,7 +5,7 @@ import 'package:dio/dio.dart';
 class AnimeRepositories {
   final dio = Dio();
 
-  Future fetchPopular() async {
+  Future<List<Popular>> fetchPopular() async {
     final response = await dio.get("https://gogoanime.herokuapp.com/popular");
     final list = response.data as List;
 
@@ -17,10 +14,11 @@ class AnimeRepositories {
       final model = Popular.fromJson(json);
       returnList.add(model);
     }
+
     return returnList;
   }
 
-  Future fetchDetail(String anime) async {
+  Future<List<AnimeDetail>> fetchDetail(String anime) async {
     final response =
         await dio.get("https://gogoanime.herokuapp.com/anime-details/$anime");
     final list = response.data as List;
