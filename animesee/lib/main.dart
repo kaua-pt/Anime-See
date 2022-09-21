@@ -1,5 +1,6 @@
 import 'package:animesee/firebase_options.dart';
 import 'package:animesee/services/AuthService.dart';
+import 'package:animesee/view/ContactScreen.dart';
 import 'package:animesee/view/HomeScreen.dart';
 import 'package:animesee/view/LoginScreen.dart';
 import 'package:animesee/view/RegisterScreen.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         "/": (context) => HomeScreen(),
         "/login": (context) => LoginScreen(),
         "/register": (context) => RegisterScreen(),
+        "/contact": (context) => ContactScreen(),
       },
     );
   }

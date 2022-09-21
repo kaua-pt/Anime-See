@@ -39,13 +39,13 @@ class OfflineDrawer extends StatelessWidget {
         ),
         Divider(thickness: 1, color: Colors.black54),
         ListTile(
-          leading: Icon(Icons.phone),
-          title: Text("Contact",
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black54,
-                  fontFamily: "Nasalization-rg")),
-        ),
+            leading: Icon(Icons.phone),
+            title: Text("Contact",
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black54,
+                    fontFamily: "Nasalization-rg")),
+            onTap: (() => Navigator.pushNamed(context, "/contact"))),
         Divider(thickness: 1, color: Colors.black54),
         ListTile(
           leading: Icon(Icons.settings),

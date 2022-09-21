@@ -26,7 +26,6 @@ class AuthService extends ChangeNotifier {
   register(String email, String password, String passwordC) async {
     try {
       if (password == passwordC) {
-        print("na funcao");
         await _auth.createUserWithEmailAndPassword(
             email: email, password: password);
       }
