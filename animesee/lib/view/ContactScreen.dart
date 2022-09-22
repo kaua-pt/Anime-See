@@ -1,6 +1,5 @@
 import 'package:animesee/components/Appbar.dart';
 import 'package:animesee/components/DrawerSel.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ContactScreen extends StatelessWidget {

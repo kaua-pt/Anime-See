@@ -1,4 +1,5 @@
 import 'package:animesee/firebase_options.dart';
+import 'package:animesee/repositories/AnimeRepositories.dart';
 import 'package:animesee/services/AuthService.dart';
 import 'package:animesee/view/ContactScreen.dart';
 import 'package:animesee/view/HomeScreen.dart';
@@ -11,6 +12,7 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   runApp(MultiProvider(
     providers: [ChangeNotifierProvider(create: (context) => AuthService())],
     child: MyApp(),

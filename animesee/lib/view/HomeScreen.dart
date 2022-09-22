@@ -1,8 +1,6 @@
 import 'package:animesee/components/Appbar.dart';
 import 'package:animesee/components/DrawerSel.dart';
 import 'package:animesee/components/ScrollRow.dart';
-import 'package:animesee/model/Anime.dart';
-import 'package:animesee/model/Popular.dart';
 import 'package:animesee/repositories/AnimeRepositories.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +14,7 @@ class _HomeScreen extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    api.fetchPopular();
     return Scaffold(
       drawer: DrawerSel(),
       appBar: Appbar(),
@@ -23,7 +22,7 @@ class _HomeScreen extends State<HomeScreen> {
           child: Padding(
         padding: const EdgeInsets.only(top: 30, left: 30),
         child: Center(
-          child: ScroolRow(list: List.empty(), title: "Popular Anime"),
+          child: ScroolRow(list: api.getReturn(), title: "Popular Anime"),
         ),
       )),
     );
