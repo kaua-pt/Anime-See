@@ -1,13 +1,11 @@
 import 'package:animesee/model/AnimeDetail.dart';
 import 'package:animesee/model/Popular.dart';
-import 'package:animesee/services/DBfirestore.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 
 class AnimeRepositories {
   final dio = Dio();
   late final List returnList = [];
-  late FirebaseFirestore db = DBfirestore.get();
 
   Future fetchPopular() async {
     final response = await dio.get("https://gogoanime.herokuapp.com/popular");

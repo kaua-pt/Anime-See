@@ -1,5 +1,4 @@
 import 'package:animesee/firebase_options.dart';
-import 'package:animesee/repositories/AnimeRepositories.dart';
 import 'package:animesee/services/AuthService.dart';
 import 'package:animesee/view/ContactScreen.dart';
 import 'package:animesee/view/HomeScreen.dart';
