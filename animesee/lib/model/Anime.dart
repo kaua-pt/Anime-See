@@ -1,7 +1,7 @@
 abstract class Anime {
-  String? animeTitle;
-  String? animeImg;
-  String? releasedDate;
+  String animeTitle;
+  String animeImg;
+  String releasedDate;
 
-  Anime({animeTitle, this.animeImg, this.releasedDate});
+  Anime({this.animeTitle = "", this.animeImg = "", this.releasedDate = ""});
 }

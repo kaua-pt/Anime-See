@@ -4,7 +4,6 @@ class AnimeDetail extends Anime {
   String? type;
   String? status;
   List<String>? genres;
-  String? otherNames;
   String? synopsis;
   String? totalEpisodes;
 
@@ -14,7 +13,6 @@ class AnimeDetail extends Anime {
       super.releasedDate,
       this.status,
       this.genres,
-      this.otherNames,
       this.synopsis,
       super.animeImg,
       this.totalEpisodes});
@@ -25,7 +23,6 @@ class AnimeDetail extends Anime {
     releasedDate = json['releasedDate'];
     status = json['status'];
     genres = json['genres'].cast<String>();
-    otherNames = json['otherNames'];
     synopsis = json['synopsis'];
     animeImg = json['animeImg'];
     totalEpisodes = json['totalEpisodes'];
@@ -38,10 +35,17 @@ class AnimeDetail extends Anime {
     data['releasedDate'] = this.releasedDate;
     data['status'] = this.status;
     data['genres'] = this.genres;
-    data['otherNames'] = this.otherNames;
     data['synopsis'] = this.synopsis;
     data['animeImg'] = this.animeImg;
     data['totalEpisodes'] = this.totalEpisodes;
     return data;
+  }
+
+  String getGender() {
+    String gender = "";
+    for (String element in genres!) {
+      gender = gender + element + " ";
+    }
+    return gender;
   }
 }

@@ -1,36 +1,34 @@
+import 'package:animesee/config/utils.dart';
 import 'package:animesee/model/AnimeDetail.dart';
 import 'package:animesee/model/Popular.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 
 class AnimeRepositories {
   final dio = Dio();
-  late final List returnList = [];
+  final List returnListPopular = [];
+  final List<AnimeDetail> returnAnime = [];
 
   Future fetchPopular() async {
-    final response = await dio.get("https://gogoanime.herokuapp.com/popular");
+    final response = await dio.get(URLPOPULAR);
     final list = response.data as List;
 
     for (var json in list) {
       final model = Popular.fromJson(json);
-      returnList.add(model);
+      returnListPopular.add(model);
     }
   }
 
-  Future getFromApiDetail(String anime) async {
-    final response =
-        await dio.get("https://gogoanime.herokuapp.com/anime-details/$anime");
-    final list = response.data as List;
-
-    List<AnimeDetail> returnList = [];
-    for (var json in list) {
-      final model = AnimeDetail.fromJson(json);
-      returnList.add(model);
-    }
-    return returnList;
+  Future fetchDetail(String anime) async {
+    final response = await dio.get(URLDETAIL + anime);
+    final list = response.data;
+    returnAnime.add(AnimeDetail.fromJson(list));
   }
 
   getReturn() {
-    return returnList;
+    return returnListPopular;
+  }
+
+  getDetail() {
+    return returnAnime;
   }
 }

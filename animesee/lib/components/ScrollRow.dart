@@ -1,12 +1,21 @@
-import 'package:animesee/model/Anime.dart';
 import 'package:animesee/model/Popular.dart';
+import 'package:animesee/repositories/AnimeRepositories.dart';
+import 'package:animesee/view/SpecificScreen.dart';
+
 import 'package:flutter/material.dart';
 
-class ScroolRow extends StatelessWidget {
+class ScroolRow extends StatefulWidget {
   final String title;
   final List list;
 
   ScroolRow({super.key, required this.list, required this.title});
+
+  @override
+  State<ScroolRow> createState() => _ScroolRowState();
+}
+
+class _ScroolRowState extends State<ScroolRow> {
+  AnimeRepositories apiL = AnimeRepositories();
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +24,7 @@ class ScroolRow extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            this.title,
+            this.widget.title,
             style: TextStyle(
                 fontSize: 20,
                 color: Colors.black54,
@@ -24,25 +33,37 @@ class ScroolRow extends StatelessWidget {
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: list.length,
+              itemCount: widget.list.length,
               itemBuilder: ((context, index) {
-                Anime anime = list[index];
+                Popular anime = widget.list[index];
                 return GestureDetector(
-                  onTap: () => Navigator.pushNamed(context, "/contact"),
+                  onTap: () async {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("Please wait while we load the page")));
+                    await apiL.fetchDetail(anime.animeId as String);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) =>
+                                SpecificScreen(anime: apiL.returnAnime.last))));
+                  },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
                       width: 100,
                       child: Column(
                         children: [
-                          Image.network(anime.animeImg as String,
-                              cacheHeight: 130, cacheWidth: 100),
+                          Image.network(
+                            anime.animeImg,
+                            cacheHeight: 130,
+                            cacheWidth: 100,
+                          ),
                           SizedBox(
                             height: 2,
                           ),
                           SizedBox(
                             height: 50,
-                            child: Text(anime.animeTitle as String,
+                            child: Text(anime.animeTitle,
                                 style: TextStyle(
                                     fontSize: 14,
                                     color: Colors.black54,

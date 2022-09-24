@@ -19,6 +19,16 @@ class OfflineDrawer extends StatelessWidget {
           decoration: BoxDecoration(color: Colors.black26),
         ),
         ListTile(
+          leading: Icon(Icons.house),
+          title: Text("Home",
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black54,
+                  fontFamily: "Nasalization-rg")),
+          onTap: () => Navigator.pushNamed(context, "/"),
+        ),
+        Divider(thickness: 1, color: Colors.black54),
+        ListTile(
           leading: Icon(Icons.login),
           title: Text("Login",
               style: TextStyle(

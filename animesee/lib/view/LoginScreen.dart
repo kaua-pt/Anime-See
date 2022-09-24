@@ -78,6 +78,8 @@ class _LoginScreen extends State<LoginScreen> {
     try {
       await context.read<AuthService>().login(email.text, password.text);
       Navigator.pushNamed(context, "/");
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Successfully logged")));
     } on AuthException catch (e) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.message)));
