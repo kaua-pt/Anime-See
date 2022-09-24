@@ -6,7 +6,9 @@ import 'package:dio/dio.dart';
 class AnimeRepositories {
   final dio = Dio();
   final List returnListPopular = [];
+  final List returnListGenre = [];
   final List<AnimeDetail> returnAnime = [];
+  final List returnListMovies = [];
 
   Future fetchPopular() async {
     final response = await dio.get(URLPOPULAR);
@@ -15,6 +17,25 @@ class AnimeRepositories {
     for (var json in list) {
       final model = Popular.fromJson(json);
       returnListPopular.add(model);
+    }
+  }
+
+  Future fetchMovies() async {
+    final response = await dio.get(URLMOVIES);
+    final list = response.data as List;
+
+    for (var json in list) {
+      final model = Popular.fromJson(json);
+      returnListMovies.add(model);
+    }
+  }
+
+  Future fetchGenre(String genre) async {
+    final response = await dio.get(URLGENRE + genre);
+    final list = response.data as List;
+    for (var json in list) {
+      final model = Popular.fromJson(json);
+      returnListGenre.add(model);
     }
   }
 
@@ -28,7 +49,15 @@ class AnimeRepositories {
     return returnListPopular;
   }
 
+  getGenre() {
+    return returnListGenre;
+  }
+
   getDetail() {
     return returnAnime;
+  }
+
+  getMovies() {
+    return returnListMovies;
   }
 }
