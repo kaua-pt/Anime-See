@@ -2,8 +2,9 @@ class User {
   final String email;
   final String name;
   final String password;
+  final List<String> favoritesAnimes = [];
 
-  const User(this.email, this.name, this.password);
+  User(this.email, this.name, this.password);
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
