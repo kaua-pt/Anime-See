@@ -44,8 +44,10 @@ class _ScroolRowState extends State<ScroolRow> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) =>
-                                SpecificScreen(anime: apiL.returnAnime.last))));
+                            builder: ((context) => SpecificScreen(
+                                  anime: apiL.returnAnime.last,
+                                  animeId: anime.animeId as String,
+                                ))));
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),

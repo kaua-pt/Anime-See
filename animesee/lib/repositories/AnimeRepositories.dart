@@ -45,10 +45,6 @@ class AnimeRepositories {
     returnAnime.add(AnimeDetail.fromJson(list));
   }
 
-  Future<String> getAnimeId(String animeName) async {
-    return "aa";
-  }
-
   getReturn() {
     return returnListPopular;
   }
