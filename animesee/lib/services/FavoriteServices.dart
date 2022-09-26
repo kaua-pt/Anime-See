@@ -5,23 +5,32 @@ import '../model/User.dart';
 
 class FavoriteService {
   late FirebaseFirestore db;
+  bool _isFavorite = true;
 
-  void verifyStar(String animeId, User user) {}
-
-  void starAnime(String animeId, User user) async {
+  Stream<bool> verifyStar(String animeId, String userEmail) async* {
     db = await DbFirestore.get();
+    Stream<QuerySnapshot<Map<String, dynamic>>> snapshot =
+        db.collection("/favorites/").snapshots();
 
-    final snapshot = await db
+    bool result = await snapshot.contains({animeId, userEmail});
+    print("$result");
+    print("$animeId");
+    _isFavorite = result;
+    yield result;
+  }
+
+  void starAnime(String animeId, String userEmail) async {
+    db = await DbFirestore.get();
+    await db
         .collection("/favorites/")
-        .where({"user": user, "anime": animeId}).get();
+        .add({"user": userEmail, "anime": animeId});
+  }
 
-    if (snapshot.docs.isEmpty) {
-      await db
-          .collection("/favorites/")
-          .doc()
-          .set({"user": user, "anime": animeId});
-    } else {
-      // remove
-    }
+  void removeStar() async {
+    db = await DbFirestore.get();
+  }
+
+  bool getFav() {
+    return _isFavorite;
   }
 }

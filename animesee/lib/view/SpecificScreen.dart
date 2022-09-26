@@ -11,8 +11,9 @@ import '../services/AuthService.dart';
 
 class SpecificScreen extends StatefulWidget {
   final AnimeDetail anime;
+  final String animeId;
 
-  const SpecificScreen({super.key, required this.anime});
+  const SpecificScreen({super.key, required this.anime, required this.animeId});
 
   @override
   State<StatefulWidget> createState() => _SpecificScreen();
@@ -37,21 +38,33 @@ class _SpecificScreen extends State<SpecificScreen> {
             child: Expanded(
               child: ListView(scrollDirection: Axis.vertical, children: [
                 Stack(alignment: Alignment.topRight, children: [
-                  Center(
-                    child: Text(
-                      myAnime.animeTitle,
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black87,
-                        fontFamily: "Nasalization-rg",
-                      ),
-                      textWidthBasis: TextWidthBasis.parent,
-                    ),
-                  ),
                   (auth.user != null
-                      ? FavoriteButton(
-                          valueChanged: () => star.starAnime(
-                              myAnime.animeTitle, auth.user as User))
+                      ? StreamBuilder<Object>(
+                          stream: star.verifyStar(
+                              widget.animeId, auth.user?.email as String),
+                          builder: (context, snapshot) {
+                            return ListTile(
+                                title: Text(
+                                  myAnime.animeTitle,
+                                  style: TextStyle(
+                                    fontSize: 22,
+                                    color: Colors.black87,
+                                    fontFamily: "Nasalization-rg",
+                                  ),
+                                  textWidthBasis: TextWidthBasis.parent,
+                                ),
+                                trailing: IconButton(
+                                    icon: Icon(
+                                      Icons.favorite,
+                                      color: (star.getFav() == true)
+                                          ? Colors.red
+                                          : Colors.black87,
+                                    ),
+                                    onPressed: () => (star.getFav() == true)
+                                        ? star.removeStar()
+                                        : star.starAnime(widget.animeId,
+                                            auth.user?.email as String)));
+                          })
                       : SizedBox()),
                 ]),
                 Image.network(myAnime.animeImg,
