@@ -2,7 +2,9 @@ import 'package:animesee/components/Appbar.dart';
 import 'package:animesee/components/DrawerSel.dart';
 import 'package:animesee/components/ScrollRow.dart';
 import 'package:animesee/repositories/AnimeRepositories.dart';
+import 'package:animesee/services/AuthService.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -11,10 +13,12 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreen extends State<HomeScreen> {
   AnimeRepositories api = AnimeRepositories();
-
+  
   @override
   Widget build(BuildContext context) {
+    AuthService auth = Provider.of<AuthService>(context);
     _loadAnimes();
+
     return Scaffold(
       drawer: DrawerSel(),
       appBar: Appbar(),
@@ -64,6 +68,15 @@ class _HomeScreen extends State<HomeScreen> {
                       padding: const EdgeInsets.only(right: 30),
                       child: Divider(thickness: 1.5, color: Colors.black54),
                     ),
+                    (auth.user != null)? (ConstrainedBox(
+                      constraints: BoxConstraints(
+                          minWidth: 50,
+                          maxWidth: 1000,
+                          maxHeight: 223,
+                          minHeight: 40),
+                      child: ScroolRow(list: api.getMovies(), title: "Movies"),
+                    ),
+                    ):(null)
                   ],
                 ),
               )),

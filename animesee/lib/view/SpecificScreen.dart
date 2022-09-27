@@ -1,7 +1,7 @@
+import 'dart:developer';
+
 import 'package:animesee/model/AnimeDetail.dart';
-import 'package:animesee/model/User.dart';
-import 'package:animesee/services/FavoriteServices.dart';
-import 'package:favorite_button/favorite_button.dart';
+import 'package:animesee/services/FavoriteService.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,8 +23,10 @@ class _SpecificScreen extends State<SpecificScreen> {
   @override
   Widget build(BuildContext context) {
     var myAnime = widget.anime;
+    Stream<bool>? isFavorite;
     AuthService auth = Provider.of<AuthService>(context);
     FavoriteService star = FavoriteService();
+    isFavorite = star.verifyStar(widget.animeId, auth.user?.email as String);
 
     return Scaffold(
         drawer: DrawerSel(),
@@ -39,10 +41,10 @@ class _SpecificScreen extends State<SpecificScreen> {
               child: ListView(scrollDirection: Axis.vertical, children: [
                 Stack(alignment: Alignment.topRight, children: [
                   (auth.user != null
-                      ? StreamBuilder<Object>(
-                          stream: star.verifyStar(
-                              widget.animeId, auth.user?.email as String),
+                      ? StreamBuilder<bool?>(
+                          stream: isFavorite,
                           builder: (context, snapshot) {
+                            //log("${snapshot.data}");
                             return ListTile(
                                 title: Text(
                                   myAnime.animeTitle,
@@ -56,14 +58,23 @@ class _SpecificScreen extends State<SpecificScreen> {
                                 trailing: IconButton(
                                     icon: Icon(
                                       Icons.favorite,
-                                      color: (star.getFav() == true)
+                                      color: (snapshot.data == true)
                                           ? Colors.red
                                           : Colors.black87,
                                     ),
-                                    onPressed: () => (star.getFav() == true)
-                                        ? star.removeStar()
-                                        : star.starAnime(widget.animeId,
-                                            auth.user?.email as String)));
+                                    onPressed: () => {
+                                          (snapshot.data == true)
+                                              ? star.unStarAnime(widget.animeId,
+                                                  auth.user?.email as String)
+                                              : star.starAnime(widget.animeId,
+                                                  auth.user?.email as String),
+                                          setState(() {
+                                            isFavorite = star.verifyStar(
+                                              widget.animeId,
+                                              auth.user?.email as String,
+                                            );
+                                          })
+                                        }));
                           })
                       : SizedBox()),
                 ]),
