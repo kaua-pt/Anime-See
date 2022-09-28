@@ -32,13 +32,13 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## Sobre o projeto
 
 Este projeto é feito com o intuito de estudar o framework Flutter. O aplicativo puxa dados de uma API de anime e os mostra na Homepage de acordo com oque é desejado pelo usuário. Há meios de favoritar alguns animes conforme o usuário logado.
 
 
 
-### Built With
+### Construído com
 
 O aplicativo é construido com o framework Flutter, vindo da linguagem dark
 
@@ -46,19 +46,19 @@ O aplicativo é construido com o framework Flutter, vindo da linguagem dark
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## Usabilidade
 
 O projeto pode ser aplicado para procura de animes, assim como o site, My anime List.
 
 <!-- ROADMAP -->
-## Roadmap
+## Checklist
 
 - [ ] Corrigir bug na HomeScreen de carregamento de dados
 - [ ] Fazer um atualizar senha
 - [ ] Fazer um esqueci minha senha
 
 <!-- LICENSE -->
-## License
+## Lisença
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
