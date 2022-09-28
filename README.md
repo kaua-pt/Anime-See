@@ -42,8 +42,7 @@ Este projeto é feito com o intuito de estudar o framework Flutter. O aplicativo
 
 O aplicativo é construido com o framework Flutter, vindo da linguagem dark
 
-* [![Dart][Dart]][Dart-url]
-* [![Flutter][Flutter]][Flutter-url]
+* Flutter 
 
 
 <!-- USAGE EXAMPLES -->
