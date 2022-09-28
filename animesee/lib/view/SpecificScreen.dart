@@ -43,7 +43,6 @@ class _SpecificScreen extends State<SpecificScreen> {
                       ? StreamBuilder<bool?>(
                           stream: isFavorite,
                           builder: (context, snapshot) {
-                            //log("${snapshot.data}");
                             return ListTile(
                                 title: Text(
                                   myAnime.animeTitle,
