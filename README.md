@@ -53,9 +53,9 @@ O projeto pode ser aplicado para procura de animes, assim como o site, My anime 
 <!-- ROADMAP -->
 ## Roadmap
 
-- [] Corrigir bug na HomeScreen de carregamento de dados
-- [] Fazer um atualizar senha
-- [] Fazer um esqueci minha senha
+- [ ] Corrigir bug na HomeScreen de carregamento de dados
+- [ ] Fazer um atualizar senha
+- [ ] Fazer um esqueci minha senha
 
 <!-- LICENSE -->
 ## License
