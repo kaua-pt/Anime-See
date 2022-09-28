@@ -10,20 +10,21 @@ class LoggedDrawer extends StatefulWidget {
 class _LoggedDrawerState extends State<LoggedDrawer> {
   @override
   Widget build(BuildContext context) {
+    AuthService auth = Provider.of<AuthService>(context);
     return Drawer(
         child: ListView(
       padding: EdgeInsets.zero,
       children: [
         UserAccountsDrawerHeader(
           accountName: Text(
-            "Kauã",
+            "User Nickname",
             style: TextStyle(
                 fontSize: 18,
                 color: Colors.white,
                 fontFamily: "Nasalization-rg"),
           ),
           accountEmail: Text(
-            "kauaponte@hotmail.com",
+            auth.user?.email as String,
             style: TextStyle(
                 fontSize: 18,
                 color: Colors.white,
@@ -46,12 +47,13 @@ class _LoggedDrawerState extends State<LoggedDrawer> {
                   fit: BoxFit.cover)),
         ),
         ListTile(
-          leading: Icon(Icons.favorite),
-          title: Text("Favorites",
+          leading: Icon(Icons.home),
+          title: Text("Home",
               style: TextStyle(
                   fontSize: 20,
                   color: Colors.black54,
                   fontFamily: "Nasalization-rg")),
+          onTap: (() => Navigator.pushNamed(context, "/")),
         ),
         Divider(thickness: 1, color: Colors.black54),
         ListTile(
@@ -61,6 +63,7 @@ class _LoggedDrawerState extends State<LoggedDrawer> {
                   fontSize: 20,
                   color: Colors.black54,
                   fontFamily: "Nasalization-rg")),
+          onTap: () => Navigator.pushNamed(context, "/settings"),
         ),
         Divider(thickness: 1, color: Colors.black54),
         ListTile(

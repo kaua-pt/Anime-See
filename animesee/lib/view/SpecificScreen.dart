@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:animesee/model/AnimeDetail.dart';
 import 'package:animesee/services/FavoriteService.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../components/Appbar.dart';
 import '../components/DrawerSel.dart';
+import '../model/Popular.dart';
 import '../services/AuthService.dart';
 
 class SpecificScreen extends StatefulWidget {
@@ -66,8 +65,10 @@ class _SpecificScreen extends State<SpecificScreen> {
                                           (snapshot.data == true)
                                               ? star.unStarAnime(widget.animeId,
                                                   auth.user?.email as String)
-                                              : star.starAnime(widget.animeId,
-                                                  auth.user?.email as String),
+                                              : star.starAnime(
+                                                  widget.animeId,
+                                                  auth.user?.email as String,
+                                                  myAnime),
                                           setState(() {
                                             isFavorite = star.verifyStar(
                                               widget.animeId,

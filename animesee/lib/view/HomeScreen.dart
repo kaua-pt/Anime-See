@@ -3,6 +3,7 @@ import 'package:animesee/components/DrawerSel.dart';
 import 'package:animesee/components/ScrollRow.dart';
 import 'package:animesee/repositories/AnimeRepositories.dart';
 import 'package:animesee/services/AuthService.dart';
+import 'package:animesee/services/FavoriteService.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,11 +14,26 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreen extends State<HomeScreen> {
   AnimeRepositories api = AnimeRepositories();
-  
+  FavoriteService star = FavoriteService();
+
+  _loadAnimes() async {
+    await api.fetchPopular();
+    await api.fetchGenre("action");
+    await api.fetchMovies();
+  }
+
   @override
   Widget build(BuildContext context) {
     AuthService auth = Provider.of<AuthService>(context);
+
+    _loadFavorites() async {
+      if (auth.user != null) {
+        await star.fetchFavorites(auth.user?.email as String);
+      }
+    }
+
     _loadAnimes();
+    _loadFavorites();
 
     return Scaffold(
       drawer: DrawerSel(),
@@ -68,27 +84,26 @@ class _HomeScreen extends State<HomeScreen> {
                       padding: const EdgeInsets.only(right: 30),
                       child: Divider(thickness: 1.5, color: Colors.black54),
                     ),
-                    (auth.user != null)? (ConstrainedBox(
-                      constraints: BoxConstraints(
-                          minWidth: 50,
-                          maxWidth: 1000,
-                          maxHeight: 223,
-                          minHeight: 40),
-                      child: ScroolRow(list: api.getMovies(), title: "Movies"),
+                    if (auth.user != null)
+                      ConstrainedBox(
+                        constraints: BoxConstraints(
+                            minWidth: 50,
+                            maxWidth: 1000,
+                            maxHeight: 223,
+                            minHeight: 40),
+                        child:
+                            ScroolRow(list: star.getFav(), title: "Favorites"),
+                      ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 30),
+                      child: Divider(thickness: 1.5, color: Colors.black54),
                     ),
-                    ):(null)
                   ],
                 ),
               )),
         ],
       ),
     );
-  }
-
-  _loadAnimes() async {
-    await api.fetchPopular();
-    await api.fetchGenre("action");
-    await api.fetchMovies();
   }
 }
 

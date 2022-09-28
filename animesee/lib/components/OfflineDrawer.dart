@@ -57,14 +57,6 @@ class OfflineDrawer extends StatelessWidget {
                     fontFamily: "Nasalization-rg")),
             onTap: (() => Navigator.pushNamed(context, "/contact"))),
         Divider(thickness: 1, color: Colors.black54),
-        ListTile(
-          leading: Icon(Icons.settings),
-          title: Text("Settings",
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black54,
-                  fontFamily: "Nasalization-rg")),
-        ),
       ],
     ));
   }

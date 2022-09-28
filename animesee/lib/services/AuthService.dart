@@ -52,6 +52,14 @@ class AuthService extends ChangeNotifier {
     }
   }
 
+  changePassword(String password, String password2) {
+    user = FirebaseAuth.instance.currentUser;
+    if (password == password2) {
+      user?.updatePassword(password);
+      _getUser();
+    }
+  }
+
   logout() async {
     await _auth.signOut();
     _getUser();

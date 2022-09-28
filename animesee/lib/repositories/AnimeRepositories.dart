@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:animesee/config/utils.dart';
 import 'package:animesee/model/AnimeDetail.dart';
 import 'package:animesee/model/Popular.dart';
@@ -9,6 +11,7 @@ class AnimeRepositories {
   final List returnListGenre = [];
   final List<AnimeDetail> returnAnime = [];
   final List returnListMovies = [];
+  final List returnFav = [];
 
   Future fetchPopular() async {
     final response = await dio.get(URLPOPULAR);
@@ -43,6 +46,16 @@ class AnimeRepositories {
     final response = await dio.get(URLDETAIL + anime);
     final list = response.data;
     returnAnime.add(AnimeDetail.fromJson(list));
+  }
+
+  Future fetchFavs(String anime) async {
+    final response = await dio.get(URLDETAIL + anime);
+    final list = response.data;
+    returnFav.add(AnimeDetail.fromJson(list));
+  }
+
+  List getFavs() {
+    return returnFav;
   }
 
   getReturn() {

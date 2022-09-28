@@ -1,9 +1,12 @@
 import 'package:animesee/firebase_options.dart';
 import 'package:animesee/services/AuthService.dart';
+import 'package:animesee/view/ChangePasswordScreen.dart';
 import 'package:animesee/view/ContactScreen.dart';
 import 'package:animesee/view/HomeScreen.dart';
 import 'package:animesee/view/LoginScreen.dart';
 import 'package:animesee/view/RegisterScreen.dart';
+import 'package:animesee/view/SettingsScreen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +16,9 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   runApp(MultiProvider(
-    providers: [ChangeNotifierProvider(create: (context) => AuthService())],
+    providers: [
+      ChangeNotifierProvider(create: (context) => AuthService()),
+    ],
     child: MyApp(),
   ));
 }
@@ -31,6 +36,8 @@ class MyApp extends StatelessWidget {
         "/login": (context) => LoginScreen(),
         "/register": (context) => RegisterScreen(),
         "/contact": (context) => ContactScreen(),
+        "/settings": (context) => SettingsScreen(),
+        "/cpassword": (context) => ChangePasswordScreen(),
       },
     );
   }
