@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:animesee/config/utils.dart';
 import 'package:animesee/model/AnimeDetail.dart';
 import 'package:animesee/model/Popular.dart';

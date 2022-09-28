@@ -52,11 +52,11 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-  changePassword(String password, String password2) {
-    user = FirebaseAuth.instance.currentUser;
-    if (password == password2) {
-      user?.updatePassword(password);
-      _getUser();
+  changePassword(String email) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      throw (e);
     }
   }
 
